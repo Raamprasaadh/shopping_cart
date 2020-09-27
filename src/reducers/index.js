@@ -1,6 +1,6 @@
+import CartItems from './cartItems';
+
 import {combineReducers} from'redux';
-import DisplayItems from './displayItems';
+export default  combineReducers({
+    CartItems});
 
-const reducers = combineReducers({DisplayItems});
-
-export default reducers;

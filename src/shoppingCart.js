@@ -7,11 +7,13 @@
     class ShoppingCart extends React.Component{
        constructor(props){
            super(props);
+           this.state={itemsList:[
+           {"Name":"Maggi","Price":"20"},
+           {"Name":"Sugar","Price":"25"},
+           {"Name":"Coffee","Price":"100"},
+           {"Name":"Rice","Price":"50"}]};
        }
-       componentDidMount(){
-        var initialValues=()=>this.props.displayItems();
-        initialValues();
-       }
+       
         render(){
             return(<div>
                 <h1>Shopping Cart</h1>  
@@ -20,17 +22,11 @@
                 {/* cart items logo*/}
                 <button>Cart Logo</button>
                 {/* display available items*/}
-                <DisplayItems itemList={this.props.DisplayItems }/>
+                <DisplayItems itemList={this.state.itemsList}/>
             </div>);
         }
     }; 
 
-    const mapStateToProps =(state)=> ({
-        DisplayItems:state.DisplayItems
-    });
-    const mapDispatchToProps = (dispatch)=>{
-        return({
-        displayItems : ()=>dispatch(displayItems())
-    })
-    }
-    export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
+    
+    
+    export default ShoppingCart;

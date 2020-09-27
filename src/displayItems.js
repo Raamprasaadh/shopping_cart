@@ -1,16 +1,18 @@
         import React from 'react';
+        import {useDispatch} from 'react-redux';
+        import {addToCart, incrementCartItem, decrementCartItem} from './actions';
         function DisplayItems(props){
-            console.log('state', props.itemList.state)
+        const dispatch = useDispatch();
         return(
             <div className="display-items">
                 <h2>Available Items</h2>
-                {(props.itemList.state !==undefined)?props.itemList.state.map((Item, Index)=>(
+                {(props.itemList !==undefined)?props.itemList.map((Item, Index)=>(
                     <div className = "item" key ={Index}>
                     <h1>Item Name : {Item.Name}</h1>
                     <h2>Price : {Item.Price}</h2>
-                    <button className="increment">+</button>
-                    <button className="decrement">-</button>
-                    <button className="add-to-cart">Add to cart</button>
+                    <button className="increment"onClick={()=>dispatch(incrementCartItem(Item))}>+</button>
+                    <button className="decrement"onClick={()=>dispatch(decrementCartItem(Item))}>-</button>
+                    <button className="add-to-cart" onClick={()=>dispatch(addToCart(Item))}>Add to cart</button>
                     </div> 
                 )):'No Items Available'}
                 
